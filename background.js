@@ -1,11 +1,13 @@
 // background.js
-chrome.runtime.onInstalled.addListener(() => {
-    chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-        if (changeInfo.status === 'complete' && tab.url.startsWith('https://www.youtube.com/watch')) {
-            chrome.scripting.executeScript({
-                target: { tabId: tabId },
-                files: ['contentScript.js'],
-            });
-        }
-    });
+chrome.tabs.onUpdated.addListener((tabId, tab) => {
+    if (tab.url && tab.url.includes("youtube.com/watch")) {
+        const queryParameters = tab.url.split("?")[1];
+        const urlParameters = new URLSearchParams(queryParameters);
+
+        chrome.tabs.sendMessage(tabId, {
+            type: "NEW",
+            videoId: urlParameters.get("v"),
+        });
+    }
 });
+
