@@ -16,19 +16,15 @@
         const bookmarkBtnExists = document.getElementsByClassName("bookmark-btn")[0];
         console.log(bookmarkBtnExists);
 
-        if (!bookmarkBtnExists) {
-            const bookmarkBtn = document.createElement("img");
+        const bookmarkBtn = document.createElement("button");
+        const bookmarkImg = document.createElement("img");
 
-            bookmarkBtn.src = chrome.runtime.getURL("assets/bookmark.png");
-            bookmarkBtn.className = "ytp-button " + "bookmark-btn";
-            bookmarkBtn.title = "Click to bookmark current timestamp";
+        bookmarkImg.src = chrome.runtime.getURL("assets/retation.png");
+        bookmarkImg.className = "ytp-button";
+        bookmarkBtn.className = "bookmark-btn";
+        bookmarkBtn.title = "Click to bookmark current timestamp";
 
-            youtubeLeftControls = document.getElementsByClassName("ytp-left-controls")[0];
-            youtubePlayer = document.getElementsByClassName("video-stream")[0];
-
-            youtubeLeftControls.append(bookmarkBtn);
-            bookmarkBtn.addEventListener("click", rotateVideo);
-        }
+        bookmarkBtn.appendChild(bookmarkImg);
     }
 })();
 // contentScript.js
@@ -48,7 +44,7 @@ function rotateVideo() {
     if (video) {
         video.style.transformOrigin = 'center center';
         video.style.transform += 'rotate(90deg)';
-        adjustVideoSize(video);
+        // adjustVideoSize(video);
     }
 }
 
