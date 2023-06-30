@@ -4,7 +4,8 @@
     "description": "Saving timestamps in YT videos",
     "permissions": [
         "storage",
-        "tabs"
+        "tabs",
+        "webNavigation"
     ],
     "host_permissions": [
         "https://*.youtube.com/*"
@@ -25,7 +26,7 @@
     "web_accessible_resources": [
         {
             "resources": [
-                "assets/retation.png",
+                "assets/rotation.png",
                 "assets/play.png",
                 "assets/delete.png",
                 "assets/save.png"
